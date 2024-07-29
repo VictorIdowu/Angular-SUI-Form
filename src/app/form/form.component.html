@@ -1,0 +1,122 @@
+<form
+  (submit)="handleSubmit()"
+  class="ui form custom-dropshadow"
+  id="container"
+  [class.loading]="countries.length === 0"
+>
+  <h1 class="ui header">Angular Semantics-Ui Form</h1>
+  <div class="two fields">
+    <div class="field">
+      <label>First Name</label>
+      <input
+        type="text"
+        name="first-name"
+        placeholder="First Name"
+        [(ngModel)]="inputData.firstName"
+      />
+    </div>
+
+    <div class="field">
+      <label>Last Name</label>
+      <input
+        type="text"
+        name="last-name"
+        placeholder="Last Name"
+        [(ngModel)]="inputData.lastName"
+      />
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Email</label>
+      <input
+        type="text"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="inputData.email"
+      />
+    </div>
+    <div class="field">
+      <label>Phone Number</label>
+      <input
+        type="number"
+        name="phone"
+        placeholder="Phone Number"
+        [(ngModel)]="inputData.phone"
+      />
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <select
+        class="ui fluid search dropdown"
+        name="card[country]"
+        [(ngModel)]="inputData.country"
+      >
+        <option value="">Countries</option>
+        @for (country of countries; track $index) {
+
+        <option value="{{ country.name.common }}">
+          {{ country.name.common }}
+        </option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <select
+        class="ui fluid search dropdown"
+        name="card[occupation]"
+        [(ngModel)]="inputData.occupation"
+      >
+        <option value="">Occupation</option>
+        <option value="Frontend Developer">Frontend Developer</option>
+        <option value="Backend Developer">Backend Developer</option>
+        <option value="Designer">Designer</option>
+        <option value="Devops Engineer">Devops Engineer</option>
+      </select>
+    </div>
+  </div>
+  <div class="inline fields">
+    <label for="">Successful:</label>
+    <div class="field">
+      <div (click)="toggleRadio(true)" class="ui radio checkbox">
+        <input
+          type="radio"
+          name="true"
+          [value]="true"
+          [(ngModel)]="inputData.success"
+          tabindex="0"
+          class="hidden"
+        />
+        <label>True</label>
+      </div>
+    </div>
+    <div class="field">
+      <div (click)="toggleRadio(false)" class="ui radio checkbox">
+        <input
+          type="radio"
+          name="false"
+          [value]="false"
+          [(ngModel)]="inputData.success"
+          tabindex="0"
+          class="hidden"
+        />
+        <label>False</label>
+      </div>
+    </div>
+  </div>
+  <button
+    class="ui teal button"
+    [class.disabled]="!verifyInputs()"
+    type="submit"
+  >
+    Submit
+  </button>
+
+  @if(inputsVerified !== '') {
+
+  <p class="ui red basic label">
+    <i class="info circle icon"></i>{{ inputsVerified }}
+  </p>
+  }
+</form>

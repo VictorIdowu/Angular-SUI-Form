@@ -1,0 +1,16 @@
+/* Add application styles & imports to this file! */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 600px;
+  margin-top: 2rem;
+}
